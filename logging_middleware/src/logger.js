@@ -2,30 +2,24 @@ const axios = require('axios');
 require('dotenv').config();
 
 const LogLevel = {
-  INFO: "INFO",
-  WARN: "WARN",
-  ERROR: "ERROR",
-  DEBUG: "DEBUG"
+  INFO: "info",
+  WARN: "warn",
+  ERROR: "error",
+  DEBUG: "debug",
+  FATAL: "fatal"
 };
 
 // Configuration
 const API_URL = process.env.API_URL || 'http://localhost:3000/logs'; 
 let ACCESS_TOKEN = process.env.ACCESS_TOKEN || '';
 
-/**
- * Reusable Logging Middleware Function
- * @param {string} stack - Stack trace or context
- * @param {string} level - Log level (INFO, WARN, ERROR, DEBUG)
- * @param {string} packageName - Package or module name
- * @param {string} message - Log message
- */
 async function Log(stack, level, packageName, message) {
   const payload = {
     stack,
     level,
-    packageName,
+    package:packageName,
     message,
-    timestamp: new Date().toISOString()
+    
   };
 
   try {

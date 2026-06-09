@@ -20,20 +20,17 @@ app.post('/logs', (req, res) => {
 
 
 app.get('/trigger', async (req, res) => {
-  console.log("log event is triggered");
-  
-  await Log(
-    "Error stack trace placeholder",
-    LogLevel.INFO,
-    "demo_app",
-    "This is a demonstration of the logging middleware."
+  const response = await Log(
+    "backend",
+    "info",
+    "service",
+    "Testing logging middleware"
   );
 
-  res.send('Log triggered! Check the console.');
+  res.json(response);
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  console.log(`Test the logger by visiting: http://localhost:${PORT}/trigger`);
 });

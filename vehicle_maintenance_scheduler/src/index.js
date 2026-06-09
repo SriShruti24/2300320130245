@@ -1,15 +1,15 @@
 require("dotenv").config();
 const express = require("express");
 
-const notificationRoutes = require("./routes/noti-routes");
+const schedulerRoutes = require("./routes/scheduler");
 
 const app = express();
 
 app.use(express.json());
 
-app.use("/notifications", notificationRoutes);
+app.use("/schedule", schedulerRoutes);
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
